@@ -1,0 +1,66 @@
+<!-- Copyright (c) 2023 8th Wall, Inc. -->
+<!-- body.html is optional; elements will be added to your html body after app.js is loaded. -->
+<img
+  onclick="document.querySelector('a-scene').emit('recenter', {})"
+  class="recenterButton"
+  src="./assets/recenter.svg" />
+
+<a-scene
+  landing-page
+  xrextras-loading
+  xrextras-runtime-error
+  xrextras-gesture-detector
+  renderer="colorManagement: true"
+  xrweb="allowedDevices: any;"
+  openai-overlay="mode: image; chatModel: gpt-3.5-turbo; imageSize: 512x512; imagePlaceholder: Describe a design pattern">
+  <a-assets>
+    <a-asset-item id="backpack" src="./assets/backpack.glb"></a-asset-item>
+  </a-assets>
+
+  <a-entity
+    light="
+      intensity: 0.35;
+      type: directional;
+      castShadow: true;
+      shadowMapHeight:2048;
+      shadowMapWidth:2048;
+      shadowRadius: 4;
+      target: #camera"
+    xrextras-attach="target: camera; offset: -8 15 4"
+    position="-1 4.3 2.5"
+    shadow>
+  </a-entity>
+
+  <a-light type="ambient" intensity="0.25"></a-light>
+
+  <a-camera id="camera" 
+  position="0 1.6 1.75"
+  raycaster="objects: .cantap"
+  cursor="fuse: false; rayOrigin: mouse;">
+  </a-camera>
+
+  <a-entity
+    backpack-texture
+    gltf-model="#backpack"
+    scale="1 1 1"
+    position="-0.2 0 -1"
+    rotation="0 -10 0"
+    xrextras-spin="speed: 10000"
+    reflections="type: realtime"
+    class="cantap"
+    xrextras-hold-drag
+    gesture-selector="addHoldDrag: true; addTwoFingerRotate: true; addPinchScale: true; addHighlight: true"
+    shadow="receive: false">
+  </a-entity>
+
+  <a-plane
+    id="ground"
+    class="cantap"
+    height="2000"
+    width="2000"
+    rotation="-90 0 0"
+    material="shader: shadow; opacity: 0.4"
+    shadow>
+  </a-plane>
+  
+</a-scene>
