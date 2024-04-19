@@ -1,0 +1,55 @@
+/* Style for "Tap To Place Model" text overlay */
+.over {
+    z-index: 10;
+    pointer-events: none;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    
+    text-align: center;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    text-shadow: 0px 0px 5px black;
+  }
+  #promptText {
+    font-size: 2em;
+    bottom: 30vh;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  
+  .button1 {
+    z-index: 10;
+    display: inline-block;
+    position:absolute;
+    bottom: 15vh;
+    left: 20%;
+    transform: translate(-50%, 0);
+  }
+  
+  .button2 {
+    z-index: 10;
+    display: inline-block;
+    position:absolute;
+    bottom: 15vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  
+  .button3 {
+    z-index: 10;
+    display: inline-block;
+    position:absolute;
+    bottom: 15vh;
+    left: 80%;
+    transform: translate(-50%, 0);
+  }
+  
+  #actionButton {
+    /* change color of action button */
+    background-color: #00C34E !important;
+  }
+  
