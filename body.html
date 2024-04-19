@@ -1,0 +1,103 @@
+<!-- Copyright (c) 2022 8th Wall, Inc. -->
+<!-- body.html is optional; elements will be added to your html body after app.js is loaded. -->
+
+<div class="over">
+    <span id="promptText"><img src="assets/Text.png"></span>
+    <div class="button-container">
+     <div class="button1" data-model-id="#MysticCorn">
+        <img src="assets/Corn.png" alt="Button">
+      </div>
+      <div class="button2" data-model-id="#Boccioni">
+          <img src="assets/Boccioni.png" alt="Button">
+      </div>
+      <div class="button3" data-model-id="#Sculpture" >
+          <img src="assets/sculpture.png" alt="Button">
+      </div>
+    </div>
+   </div>
+   
+   <!-- Add the tap-place component to the scene so it has an effect -->
+   <a-scene
+     xrextras-gesture-detector
+     tap-place
+     landing-page
+     xrextras-loading
+     xrextras-runtime-error
+     renderer="colorManagement:true"
+     xrweb="
+       allowedDevices: any;
+       defaultEnvironmentFogIntensity: 0.5; 
+       defaultEnvironmentFloorTexture: #groundTex; 
+       defaultEnvironmentFloorColor: #FFF;
+       defaultEnvironmentSkyBottomColor: #B4C4CC; 
+       defaultEnvironmentSkyTopColor: #5ac8fa;
+       defaultEnvironmentSkyGradientStrength: 0.5;">
+   
+     <!-- We can define assets here to be loaded when A-Frame initializes -->
+     <a-assets>
+       <a-asset-item id="SpiritSheela" src="assets/SpiritSheela.glb"></a-asset-item>
+       <a-asset-item id="Boccioni" src="assets/Boccioni.glb"></a-asset-item>
+       <a-asset-item id="MysticCorn" src="assets/MysticCorn.glb"></a-asset-item>
+       <a-asset-item id="Sculpture" src="assets/Sculpture.glb"></a-asset-item>
+       <a-asset-item id="Sculpture" src="assets/Logo.png"></a-asset-item>
+     </a-assets>
+   
+     <xrextras-capture-button></xrextras-capture-button>
+     <xrextras-capture-preview></xrextras-capture-preview>
+   
+     <xrextras-capture-config
+     max-duration-ms="15000"
+     max-dimension="1280"
+     enable-end-card="true"
+     cover-image-url=""
+     end-card-call-to-action="Try it at:"
+     short-link=""
+     footer-image-url="//cdn.8thwall.com/web/img/almostthere/v2/poweredby-horiz-white-2.svg"
+     watermark-image-url="assets/Logo.png"
+     watermark-location="bottomRight"
+     file-name-prefix="my-capture-"
+   ></xrextras-capture-config>
+   
+   
+     <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
+     <a-camera
+       id="camera"
+       position="0 8 8"
+       raycaster="objects: .cantap"
+       cursor="
+         fuse: false;
+         rayOrigin: mouse;">
+     </a-camera>
+   
+     <a-entity
+       light="
+         type: directional;
+         intensity: 0.8;
+         castShadow: true;
+         shadowMapHeight:2048;
+         shadowMapWidth:2048;
+         shadowCameraTop: 40;
+         shadowCameraBottom: -40;
+         shadowCameraRight: 40;
+         shadowCameraLeft: -40;
+         target: #camera"
+       xrextras-attach="target: camera; offset: 8 15 4"
+       position="1 4.3 2.5"
+       shadow>
+     </a-entity>
+   
+     <a-light type="ambient" intensity="0.5"></a-light>
+   
+     <!-- Adding the cantap class allows the ground to be clicked -->
+   
+     <a-plane
+       id="ground"
+       class="cantap"
+       rotation="-90 0 0"
+       width="1000"
+       height="1000"
+       material="shader: shadow"
+       shadow>
+     </a-plane>
+   </a-scene>
+   
